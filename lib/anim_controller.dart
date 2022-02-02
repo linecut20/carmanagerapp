@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AnimController extends ChangeNotifier{
   var isRightTopDoorLock = true;
@@ -7,6 +7,12 @@ class AnimController extends ChangeNotifier{
   var isLeftBottomDoorLock = true;
   var isBonetLock = true;
   var isTrunkLock = true;
+  var bottomNavIndex = 0;
+
+  void onBottomNavTabChange(int index) {
+    bottomNavIndex = index;
+    notifyListeners();
+  }
 
   void changeRightTopDoorState() {
     isRightTopDoorLock = !isRightTopDoorLock;

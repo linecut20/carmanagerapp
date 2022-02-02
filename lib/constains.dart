@@ -4,4 +4,4 @@ const Color primaryColor = Colors.cyan;
 const Color redColor = Colors.deepOrangeAccent;
 
 const double defaultPadding = 16.0;
-const Duration defaultDuration = Duration(milliseconds: 250);
+const Duration defaultDuration = Duration(milliseconds: 300);
