@@ -33,8 +33,8 @@ class HomeController extends StatelessWidget {
 }
 
 List<String> navIconsSrc = [
-  'icons/Lock.svg',
-  'icons/Charge.svg',
-  'icons/Temp.svg',
-  'icons/Tyre.svg'
+  'assets/icons/Lock.svg',
+  'assets/icons/Charge.svg',
+  'assets/icons/Temp.svg',
+  'assets/icons/Tyre.svg'
 ];

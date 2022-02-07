@@ -5,7 +5,7 @@ class AnimController extends ChangeNotifier{
   var isLeftTopDoorLock = true;
   var isRightBottomDoorLock = true;
   var isLeftBottomDoorLock = true;
-  var isBonetLock = true;
+  var isBonnetLock = true;
   var isTrunkLock = true;
   var bottomNavIndex = 0;
 
@@ -34,8 +34,9 @@ class AnimController extends ChangeNotifier{
     notifyListeners();
   }
 
-  void changeBonetState() {
-    isBonetLock = !isBonetLock;
+  void changeBonnetState() {
+    isBonnetLock = !isBonnetLock;
+    print(isBonnetLock.toString());
     notifyListeners();
   }
 

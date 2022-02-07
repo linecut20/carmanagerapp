@@ -24,8 +24,8 @@ class DoorLock extends StatelessWidget{
           //key를 사용해 별개로 지정하지 않는 경우
           //flutter는 같은 위젯으로 인식 => 애니메이션 사용x
           child: isLock
-              ? SvgPicture.asset('icons/door_lock.svg', key: ValueKey('lock'))
-              : SvgPicture.asset('icons/door_unlock.svg', key: ValueKey('unlock')),
+              ? SvgPicture.asset('assets/icons/door_lock.svg', key: ValueKey('lock'))
+              : SvgPicture.asset('assets/icons/door_unlock.svg', key: ValueKey('unlock')),
         )
     );
   }
