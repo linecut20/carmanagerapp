@@ -20,7 +20,7 @@ class DoorLock extends StatelessWidget{
                 scale: animation,
                 child: child,
               ),
-          duration: defaultDuration,
+          duration: Duration(milliseconds: 300),
           //key를 사용해 별개로 지정하지 않는 경우
           //flutter는 같은 위젯으로 인식 => 애니메이션 사용x
           child: isLock
