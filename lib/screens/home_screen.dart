@@ -1,3 +1,4 @@
+import 'package:carmanagerapp/batter_status.dart';
 import 'package:carmanagerapp/components/door_lock.dart';
 import 'package:carmanagerapp/home_controller.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   late AnimationController _batteryAnimController;
   late Animation<double> _batteryAnimMotion;
+  late Animation<double> _batteryStatusMotion;
 
   void setupBatterAnimFunc() {
     _batteryAnimController = AnimationController(
@@ -27,6 +29,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     _batteryAnimMotion = CurvedAnimation(
       parent: _batteryAnimController,
       curve: Interval(0.0, 0.5),
+    );
+
+    _batteryStatusMotion = CurvedAnimation(
+      parent: _batteryAnimController,
+      curve: Interval(0.6, 1)
     );
   }
 
@@ -143,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           duration: defaultDuration,
                           top: _animController.bottomNavIndex == 0
                             ? constrains.maxHeight * 0.125
-                            : constrains.maxHeight / 2,
+                            : constrains.maxHeight / 3,
                           child: AnimatedOpacity(
                             duration: defaultDuration,
                             opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
@@ -159,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           duration: defaultDuration,
                           bottom: _animController.bottomNavIndex == 0
                             ? constrains.maxHeight * 0.0925
-                            : constrains.maxHeight / 2,
+                            : constrains.maxHeight / 3,
                           child: AnimatedOpacity(
                             duration: defaultDuration,
                             opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
@@ -172,9 +179,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
                         //배터리
                         Opacity(
-                          // duration: defaultDuration,
-                          // opacity: _animController.bottomNavIndex != 0 ? 1 : 0,
-                          opacity: _batteryAnimController.value,
+                          opacity: _batteryAnimMotion.value,
                           child: AnimatedPositioned(
                             duration: defaultDuration,
                             child: SvgPicture.asset('assets/icons/battery.svg',
@@ -182,58 +187,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                           ),
                         ),
-                        Opacity(
-                          opacity: _batteryAnimController.value,
-                          child: Column(
-                            children: [
-                              Text('220 mi',
-                                style: Theme.of(context).
-                                textTheme.headline3!.
-                                copyWith(color: Colors.white)),
 
-                              Text('63%',
-                                style: Theme.of(context).
-                                textTheme.headline5!.
-                                copyWith(color: Colors.white),
-                              ),
-                              Spacer(),
-                              Text('충전중',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20
-                                ),
-                              ),
-
-                              Text('17분 남았습니다'.toUpperCase(),
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16
-                                ),
-                              ),
-                              SizedBox(
-                                height: constrains.maxHeight * 0.2,
-                              ),
-                              Container(
-                                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('22mi/hr',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Text('232v',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      )
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
+                        Positioned(
+                          top: 25 * (1 - _batteryStatusMotion.value),
+                          width: constrains.maxWidth,
+                          height: constrains.maxHeight * 0.9,
+                          child: Opacity(
+                            opacity: _batteryStatusMotion.value,
+                            child: BatteryStatus()
                           ),
                         )
                       ],
