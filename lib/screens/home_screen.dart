@@ -219,6 +219,26 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         opacity: _batteryStatusMotion.value,
                         child: BatteryStatus()
                       ),
+                    ),
+
+                    //temp
+                    Column(
+                      children: [
+                        SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: SvgPicture.asset('assets/icons/coolShape.svg', color: Colors.white38,),
+                        ),
+
+                        SizedBox(
+                          height: defaultPadding / 2,
+                        ),
+
+                        Text('COOL', style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white38
+                        ),)
+                      ],
                     )
                   ],
                 );
