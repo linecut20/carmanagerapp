@@ -9,6 +9,10 @@ class AnimController extends ChangeNotifier{
   var isTrunkLock = true;
   var bottomNavIndex = 0;
 
+  //===========================
+  bool isCoolSelected = true;
+  bool isHeatSelected = false;
+
   void onBottomNavTabChange(int index) {
     bottomNavIndex = index;
     notifyListeners();
@@ -36,12 +40,23 @@ class AnimController extends ChangeNotifier{
 
   void changeBonnetState() {
     isBonnetLock = !isBonnetLock;
-    print(isBonnetLock.toString());
     notifyListeners();
   }
 
   void changeTrunkState() {
     isTrunkLock = !isTrunkLock;
+    notifyListeners();
+  }
+
+  void selectCoolFunc() {
+    isCoolSelected = true;
+    isHeatSelected = false;
+    notifyListeners();
+  }
+
+  void selectHotFunc() {
+    isCoolSelected = false;
+    isHeatSelected = true;
     notifyListeners();
   }
 }

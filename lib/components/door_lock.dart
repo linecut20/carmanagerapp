@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
-import '../constains.dart';
 
 class DoorLock extends StatelessWidget{
   const DoorLock({required this.press, required this.isLock, Key? key}) : super(key: key);
