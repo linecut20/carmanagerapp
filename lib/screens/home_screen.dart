@@ -87,7 +87,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           body: LayoutBuilder(
               builder: (context, constrains) {
                 //Stack => child위젯을 겹쳐 포진하고자할 때 사용
-                return SizedBox(
+                return Container(
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
                   width: constrains.maxWidth,
                   height: constrains.maxHeight,
                   child: Stack(
@@ -113,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       AnimatedPositioned(
                         duration: defaultDuration,
                         left: _animController.bottomNavIndex == 0
-                            ? constrains.maxWidth * 0.075
+                            ? constrains.maxWidth * 0.15
                             : constrains.maxWidth / 2,
                         top: 325,
                         child: AnimatedOpacity(
@@ -130,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       AnimatedPositioned(
                         duration: defaultDuration,
                         right: _animController.bottomNavIndex == 0
-                          ? constrains.maxWidth * 0.075
+                          ? constrains.maxWidth * 0.15
                           : constrains.maxWidth / 2,
                         top: 325,
                         child: AnimatedOpacity(
@@ -147,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       AnimatedPositioned(
                         duration: defaultDuration,
                         left: _animController.bottomNavIndex == 0
-                          ? constrains.maxWidth * 0.075
+                          ? constrains.maxWidth * 0.15
                           : constrains.maxWidth / 2,
                         bottom: 275,
                         child: AnimatedOpacity(
@@ -164,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       AnimatedPositioned(
                         duration: defaultDuration,
                         right: _animController.bottomNavIndex == 0
-                          ? constrains.maxWidth * 0.075
+                          ? constrains.maxWidth * 0.15
                           : constrains.maxWidth / 2,
                         bottom: 275,
                         child: AnimatedOpacity(
@@ -295,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         }
                                       });
                                     }, icon: Icon(Icons.arrow_drop_up_outlined, color: Colors.white, size: 40), padding: EdgeInsets.zero,),
-                                    Text("$temp \u2031", style: TextStyle(fontSize: 80),),
+                                    Text("$temp \u2103", style: TextStyle(fontSize: 80),),
                                     IconButton(onPressed: () {
                                       setState(() {
                                         if (temp > 18) {
