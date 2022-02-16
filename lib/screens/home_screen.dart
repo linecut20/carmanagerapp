@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void setupTyreAnimFunc() {
     _tyreAnimController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 300)
+      duration: Duration(milliseconds: 600)
     );
 
     _tyreAnimMotion = CurvedAnimation(
@@ -405,6 +405,63 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           opacity: _tyreAnimMotion.value,
                           child: SvgPicture.asset('assets/icons/FL_Tyre.svg')
                         ),
+                      ),
+
+                      Opacity(
+                        opacity: _tyreAnimMotion.value,
+                        child: Padding(
+                          padding: EdgeInsets.all(defaultPadding),
+                          child: GridView.builder(
+                            itemCount: 4,
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: defaultPadding,
+                              crossAxisSpacing: defaultPadding,
+                              childAspectRatio: constrains.maxWidth / constrains.maxHeight
+                            ),
+                            itemBuilder: (context, index) => Container(
+                              padding: EdgeInsets.all(defaultPadding),
+                              decoration: BoxDecoration(
+                                color: Colors.white10,
+                                border: Border.all(
+                                  color: primaryColor,
+                                  width: 3
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(10))
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text.rich(
+                                    TextSpan(
+                                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                                        color: Colors.white
+                                      ),
+                                      text: '27',
+                                      children: [
+                                        TextSpan(
+                                          text: ' pis',
+                                          style: TextStyle(fontSize: 20)
+                                        )
+                                      ]
+                                    ),
+                                  ),
+                                  SizedBox(height: defaultPadding),
+                                  Text('22 \u2103',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  Text('LOW'),
+                                  Spacer(),
+                                  Text('LOW PRESSURE',
+                                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ),
+                        ),
                       )
                     ],
                   ),
@@ -429,7 +486,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               if (index == 3) {
                 _tyreAnimController.forward();
               } else if (_animController.bottomNavIndex == 3 && index != 3) {
-                _tyreAnimController.reverse();
+                _tyreAnimController.reverse(from: 0.7);
               }
 
               _animController.onBottomNavTabChange(index);
