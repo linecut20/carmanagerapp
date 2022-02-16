@@ -25,8 +25,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late AnimationController _tempAnimController;
   late Animation<double> _tempInfoMotion;
   late Animation<double> _tempImgMotion;
+  //===========================================
+
+  late AnimationController _tyreAnimController;
+  late Animation<double> _tyreAnimMotion;
 
   int temp = 20;
+
+  void setupTyreAnimFunc() {
+    _tyreAnimController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300)
+    );
+
+    _tyreAnimMotion = CurvedAnimation(
+      parent: _tyreAnimController,
+      curve: Interval(0.0, 0.4)
+    );
+  }
 
   void setupTempAnimFunc() {
     _tempAnimController = AnimationController(
@@ -48,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void setupBatterAnimFunc() {
     _batteryAnimController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 600)
+      duration: Duration(milliseconds: 300)
     );
 
     _batteryAnimMotion = CurvedAnimation(
@@ -68,6 +84,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.initState();
     setupBatterAnimFunc();
     setupTempAnimFunc();
+    setupTyreAnimFunc();
   }
 
   @override
@@ -75,13 +92,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.dispose();
     _batteryAnimController.dispose();
     _tempAnimController.dispose();
+    _tyreAnimController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       //적용할 애니메이션 컨트롤러 관장구간
-      animation: Listenable.merge([_animController, _batteryAnimController, _tempAnimController]),
+      animation: Listenable.merge([_animController, _batteryAnimController, _tempAnimController, _tyreAnimController]),
       builder: (context, snapshot) {
         return Scaffold(
           body: LayoutBuilder(
@@ -94,7 +112,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-
                       //차량도면
                       AnimatedPositioned(
                         duration: Duration(milliseconds: 200),
@@ -347,6 +364,47 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           ),
                         ),
                         width: 200,
+                      ),
+
+                      //tyre
+                      //좌상단
+                      Positioned(
+                        left: constrains.maxWidth * 0.2,
+                        top: constrains.maxHeight * 0.2,
+                        child: Opacity(
+                          opacity: _tyreAnimMotion.value,
+                          child: SvgPicture.asset('assets/icons/FL_Tyre.svg')
+                        ),
+                      ),
+
+                      //우상단
+                      Positioned(
+                        right: constrains.maxWidth * 0.2,
+                        top: constrains.maxHeight * 0.2,
+                        child: Opacity(
+                          opacity: _tyreAnimMotion.value,
+                          child: SvgPicture.asset('assets/icons/FL_Tyre.svg')
+                        ),
+                      ),
+
+                      //좌하단
+                      Positioned(
+                        left: constrains.maxWidth * 0.2,
+                        bottom: constrains.maxHeight * 0.175,
+                        child: Opacity(
+                          opacity: _tyreAnimMotion.value,
+                          child: SvgPicture.asset('assets/icons/FL_Tyre.svg')
+                        ),
+                      ),
+
+                      //우하단
+                      Positioned(
+                        right: constrains.maxWidth * 0.2,
+                        bottom: constrains.maxHeight * 0.175,
+                        child: Opacity(
+                          opacity: _tyreAnimMotion.value,
+                          child: SvgPicture.asset('assets/icons/FL_Tyre.svg')
+                        ),
                       )
                     ],
                   ),
@@ -366,6 +424,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 _tempAnimController.forward();
               } else if (_animController.bottomNavIndex == 2 && index != 2) {
                 _tempAnimController.reverse(from: 0.3);
+              }
+
+              if (index == 3) {
+                _tyreAnimController.forward();
+              } else if (_animController.bottomNavIndex == 3 && index != 3) {
+                _tyreAnimController.reverse();
               }
 
               _animController.onBottomNavTabChange(index);
