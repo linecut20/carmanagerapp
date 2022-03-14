@@ -129,112 +129,103 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       ),
 
                       //운전석
-                      Visibility(
-                        visible: _animController.bottomNavIndex == 0,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            //위젯중 Animated가 붙은 위젯이 존재 (애니메이셔닝을 지원하는 위젯 개념)
-                            AnimatedPositioned(
-                                duration: defaultDuration,
-                                left: _animController.bottomNavIndex == 0
-                                    ? constrains.maxWidth * 0.15
-                                    : constrains.maxWidth / 2,
-                                top: 325,
-                                child: AnimatedOpacity(
-                                  duration: defaultDuration,
-                                  opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
-                                  child: DoorLock(
-                                    isLock: _animController.isLeftTopDoorLock,
-                                    press: _animController.changeLeftTopDoorState,
-                                  ),
-                                )
+                      AnimatedPositioned(
+                          duration: defaultDuration,
+                          left: _animController.bottomNavIndex == 0
+                              ? constrains.maxWidth * 0.15
+                              : constrains.maxWidth / 2,
+                          top: 325,
+                          child: AnimatedOpacity(
+                            duration: defaultDuration,
+                            opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
+                            child: DoorLock(
+                              isLock: _animController.isLeftTopDoorLock,
+                              press: _animController.changeLeftTopDoorState,
                             ),
+                          )
+                      ),
 
-                            //조수석
-                            AnimatedPositioned(
-                                duration: defaultDuration,
-                                right: _animController.bottomNavIndex == 0
-                                    ? constrains.maxWidth * 0.15
-                                    : constrains.maxWidth / 2,
-                                top: 325,
-                                child: AnimatedOpacity(
-                                  opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
-                                  duration: defaultDuration,
-                                  child: DoorLock(
-                                    isLock: _animController.isRightTopDoorLock,
-                                    press: _animController.changeRightTopDoorState,
-                                  ),
-                                )
+                      //조수석
+                      AnimatedPositioned(
+                          duration: defaultDuration,
+                          right: _animController.bottomNavIndex == 0
+                              ? constrains.maxWidth * 0.15
+                              : constrains.maxWidth / 2,
+                          top: 325,
+                          child: AnimatedOpacity(
+                            opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
+                            duration: defaultDuration,
+                            child: DoorLock(
+                              isLock: _animController.isRightTopDoorLock,
+                              press: _animController.changeRightTopDoorState,
                             ),
+                          )
+                      ),
 
-                            //운전석 뒷자석
-                            AnimatedPositioned(
-                                duration: defaultDuration,
-                                left: _animController.bottomNavIndex == 0
-                                    ? constrains.maxWidth * 0.15
-                                    : constrains.maxWidth / 2,
-                                bottom: 275,
-                                child: AnimatedOpacity(
-                                  duration: defaultDuration,
-                                  opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
-                                  child: DoorLock(
-                                    isLock: _animController.isLeftBottomDoorLock,
-                                    press: _animController.changeLeftBottomDoorState,
-                                  ),
-                                )
+                      //운전석 뒷자석
+                      AnimatedPositioned(
+                          duration: defaultDuration,
+                          left: _animController.bottomNavIndex == 0
+                              ? constrains.maxWidth * 0.15
+                              : constrains.maxWidth / 2,
+                          bottom: 275,
+                          child: AnimatedOpacity(
+                            duration: defaultDuration,
+                            opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
+                            child: DoorLock(
+                              isLock: _animController.isLeftBottomDoorLock,
+                              press: _animController.changeLeftBottomDoorState,
                             ),
+                          )
+                      ),
 
-                            //조수석 뒷자석
-                            AnimatedPositioned(
-                                duration: defaultDuration,
-                                right: _animController.bottomNavIndex == 0
-                                    ? constrains.maxWidth * 0.15
-                                    : constrains.maxWidth / 2,
-                                bottom: 275,
-                                child: AnimatedOpacity(
-                                  duration: defaultDuration,
-                                  opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
-                                  child: DoorLock(
-                                    isLock: _animController.isRightBottomDoorLock,
-                                    press: _animController.changeRightBottomDoorState,
-                                  ),
-                                )
+                      //조수석 뒷자석
+                      AnimatedPositioned(
+                          duration: defaultDuration,
+                          right: _animController.bottomNavIndex == 0
+                              ? constrains.maxWidth * 0.15
+                              : constrains.maxWidth / 2,
+                          bottom: 275,
+                          child: AnimatedOpacity(
+                            duration: defaultDuration,
+                            opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
+                            child: DoorLock(
+                              isLock: _animController.isRightBottomDoorLock,
+                              press: _animController.changeRightBottomDoorState,
                             ),
+                          )
+                      ),
 
-                            //본넷
-                            AnimatedPositioned(
-                                duration: defaultDuration,
-                                top: _animController.bottomNavIndex == 0
-                                    ? constrains.maxHeight * 0.2
-                                    : constrains.maxHeight / 3,
-                                child: AnimatedOpacity(
-                                  duration: defaultDuration,
-                                  opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
-                                  child: DoorLock(
-                                    isLock: _animController.isBonnetLock,
-                                    press: _animController.changeBonnetState,
-                                  ),
-                                )
+                      //본넷
+                      AnimatedPositioned(
+                          duration: defaultDuration,
+                          top: _animController.bottomNavIndex == 0
+                              ? constrains.maxHeight * 0.2
+                              : constrains.maxHeight / 3,
+                          child: AnimatedOpacity(
+                            duration: defaultDuration,
+                            opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
+                            child: DoorLock(
+                              isLock: _animController.isBonnetLock,
+                              press: _animController.changeBonnetState,
                             ),
+                          )
+                      ),
 
-                            //트렁크
-                            AnimatedPositioned(
-                                duration: defaultDuration,
-                                bottom: _animController.bottomNavIndex == 0
-                                    ? constrains.maxHeight * 0.2
-                                    : constrains.maxHeight / 3,
-                                child: AnimatedOpacity(
-                                  duration: defaultDuration,
-                                  opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
-                                  child: DoorLock(
-                                    isLock: _animController.isTrunkLock,
-                                    press: _animController.changeTrunkState,
-                                  ),
-                                )
+                      //트렁크
+                      AnimatedPositioned(
+                          duration: defaultDuration,
+                          bottom: _animController.bottomNavIndex == 0
+                              ? constrains.maxHeight * 0.2
+                              : constrains.maxHeight / 3,
+                          child: AnimatedOpacity(
+                            duration: defaultDuration,
+                            opacity: _animController.bottomNavIndex == 0 ? 1 : 0,
+                            child: DoorLock(
+                              isLock: _animController.isTrunkLock,
+                              press: _animController.changeTrunkState,
                             ),
-                          ],
-                        ),
+                          )
                       ),
 
                       //배터리
